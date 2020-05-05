@@ -1,0 +1,27 @@
+package io.github.jhipster.sample.service.mapper;
+
+
+import io.github.jhipster.sample.domain.*;
+import io.github.jhipster.sample.service.dto.LabelDTO;
+
+import org.mapstruct.*;
+
+/**
+ * Mapper for the entity {@link Label} and its DTO {@link LabelDTO}.
+ */
+@Mapper(componentModel = "cdi", uses = {})
+public interface LabelMapper extends EntityMapper<LabelDTO, Label> {
+
+
+    @Mapping(target = "operations", ignore = true)
+    Label toEntity(LabelDTO labelDTO);
+
+    default Label fromId(Long id) {
+        if (id == null) {
+            return null;
+        }
+        Label label = new Label();
+        label.id = id;
+        return label;
+    }
+}
