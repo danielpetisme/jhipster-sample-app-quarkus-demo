@@ -112,9 +112,8 @@ public class OperationResource {
         if (eagerload) {
             result = operationService.findAllWithEagerRelationships(page);
         } else {
-            result = operationService.findAll().page(page);
+            result = operationService.findAll(page);
         }
-        result = result.map(operation -> operationMapper.toDto(operation));
         var response = Response.ok().entity(result.content);
         response = PaginationUtil.withPaginationInfo(response, uriInfo, result);
         return response.build();
